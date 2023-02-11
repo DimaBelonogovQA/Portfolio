@@ -1,6 +1,5 @@
 ### Hi there 👋
 
-<!--
 **DimaBelonogovQA/DimaBelonogovQA** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 #  Заголовок первого уровня
@@ -26,3 +25,5 @@ _Пример_
 
 ___Пример___
 ***Пример***
+
+![Markdown - самый простой язык разметки в мире!](https://markdown.net.br/assets/img/markdown.jpg "Логотип Markdown")
