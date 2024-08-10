@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "2bb63649-c097-4920-8396-79eb712691ed",
+		"name": "NASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37116247"
+	},
+	"item": [
+		{
+			"name": "Get photos Cursority",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"var qur_secondPhotoID = jsonData.photos[1].id\r",
+							"console.log(qur_secondPhotoID)\r",
+							"\r",
+							"pm.environment.set(\"qur_secondID\", qur_secondPhotoID);\r",
+							"\r",
+							"var CameraName_secondCuriosity = jsonData.photos[1].camera.name \r",
+							"console.log(CameraName_secondCuriosity)\r",
+							"\r",
+							"pm.environment.set(\"CameraName_secondCuriosity\", CameraName_secondCuriosity);\r",
+							"\r",
+							"pm.test(\"значение earth_date из запроса = значению earth_date второй фотографии из тела ответа от сервера\", function () {\r",
+							"    earth_date_req =  pm.request.url.query.toObject().earth_date\r",
+							"    earth_date_res =  jsonData.photos[1].earth_date\r",
+							"    pm.expect(earth_date_req).to.eql(earth_date_res);\r",
+							"    console.log(\"earth_date_req\" + earth_date_req)\r",
+							"    console.log(\"earth_date_res\" + earth_date_res)\r",
+							"});\r",
+							"let bodyres = pm.response.json()\r",
+							"let earth_date_res = JSON.parse(responseBody).photos[1].earth_date\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2022-01-21",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"mars-photos",
+						"api",
+						"v1",
+						"rovers",
+						"curiosity",
+						"photos"
+					],
+					"query": [
+						{
+							"key": "earth_date",
+							"value": "2022-01-21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get photos Cursority Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"var qur_secondPhotoID = jsonData.photos[1].id\r",
+							"console.log(qur_secondPhotoID)\r",
+							"\r",
+							"pm.environment.set(\"qur_secondID\", qur_secondPhotoID);\r",
+							"\r",
+							"var CameraName_secondCuriosity = jsonData.photos[1].camera.name \r",
+							"console.log(CameraName_secondCuriosity)\r",
+							"\r",
+							"pm.environment.set(\"CameraName_secondCuriosity\", CameraName_secondCuriosity);\r",
+							"\r",
+							"pm.test(\"значение earth_date из запроса = значению earth_date второй фотографии из тела ответа от сервера\", function () {\r",
+							"    earth_date_req =  pm.request.url.query.toObject().earth_date\r",
+							"    earth_date_res =  jsonData.photos[1].earth_date\r",
+							"    pm.expect(earth_date_req).to.eql(earth_date_res);\r",
+							"    console.log(\"earth_date_req\" + earth_date_req)\r",
+							"    console.log(\"earth_date_res\" + earth_date_res)\r",
+							"});\r",
+							"\r",
+							"// Test for response time\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Photos array should have the correct structure\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.photos).to.be.an('array').that.is.not.empty;\r",
+							"  responseData.photos.forEach(function(photo) {\r",
+							"    pm.expect(photo).to.be.an('object');\r",
+							"    pm.expect(photo.id).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(photo.sol).to.exist.and.to.be.a('number');\r",
+							"    pm.expect(photo.camera).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(photo.img_src).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(photo.earth_date).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(photo.rover).to.exist.and.to.be.an('object');\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Id in the response is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.photos).to.be.an('array');\r",
+							"    responseData.photos.forEach(function(photo) {\r",
+							"        pm.expect(photo.id).to.be.a('number').and.to.be.at.least(0);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the 'camera' object within the 'photos' array\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.photos).to.be.an('array').that.is.not.empty;\r",
+							"    \r",
+							"    responseData.photos.forEach(function(photo) {\r",
+							"        pm.expect(photo.camera).to.be.an('object').that.is.not.empty;\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2022-01-21",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"mars-photos",
+						"api",
+						"v1",
+						"rovers",
+						"curiosity",
+						"photos"
+					],
+					"query": [
+						{
+							"key": "earth_date",
+							"value": "2022-01-21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get photos Oppo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"var qur_secondPhotoOppoID = jsonData.photos[1].id \r",
+							"console.log(qur_secondPhotoOppoID)\r",
+							"\r",
+							"pm.environment.set(\"qur_secOppoID\", qur_secondPhotoOppoID);\r",
+							"\r",
+							"var qur_secCameraOppoID = jsonData.photos[1].camera.name \r",
+							"console.log(qur_secCameraOppoID)\r",
+							"\r",
+							"pm.environment.set(\"qur_secCamOppoID\", qur_secCameraOppoID);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date=2012-1-1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"mars-photos",
+						"api",
+						"v1",
+						"rovers",
+						"Opportunity",
+						"photos"
+					],
+					"query": [
+						{
+							"key": "earth_date",
+							"value": "2012-1-1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "DEMO_KEY",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "api_key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

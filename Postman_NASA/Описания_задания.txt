@@ -1,0 +1,19 @@
+Дано: 
+Площадка open api NASA - https://api.nasa.gov/;
+Запрос Querying by Earth date на дату 21.01.2022
+
+Задание: 
+Выполнить запрос по Querying by Earth date на дату 21.01.2022;
+Передать в переменную окружения id второй фотографии, распарсив json.
+
+Решение:
+Перейти на сайт: https://api.nasa.gov/;
+Найти блок: Querying by Earth date;
+Скопировать Example query и вставить в Postman;
+Изменить дату (earth_date) в Query Params на 2022-01-21;
+Отправляем GET запрос;
+Во вкладке “Tests” вписываем код:
+var jsonData = pm.response.json();
+pm.environment.set("second_photo_id", jsonData.photos[1].id);
+Отправляем запрос;
+Проверяем столбец VARIABLE во вкладке Environments.
