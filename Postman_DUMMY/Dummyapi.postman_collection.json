@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "f61ed05a-c3ff-4c83-91bc-0ee6add316c7",
+		"name": "Dummyapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37116247"
+	},
+	"item": [
+		{
+			"name": "UserList NO AUTH",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user?page=1&limit=50",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"email\", jsonData.email);\r",
+							"pm.environment.set(\"userId\", jsonData.id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"AI\",\r\n\"lastName\": \"AIAI\",\r\n\"email\": \"dlaaqlqfihinilecpz2@ytnhy.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"Qa\",\r\n\"lastName\": \"TestQa\",\r\n\"phone\": 1234567890\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/66abcfc8f3e1514130d5f0a1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"66abcfc8f3e1514130d5f0a1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpDate User Chek",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user/66abcfc8f3e1514130d5f0a1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"66abcfc8f3e1514130d5f0a1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"postId\", jsonData.Id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"text\": \"Здесь могла быть ваша реклама\",\r\n\"image\": \"https://api.nasa.gov/\",\r\n\"likes\": 666,\r\n\"tags\": \"nasa\",\r\n\"owner\": \"66b71e6e4880c89b7fdeaac9\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/post/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cherk Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user/66abcfc8f3e1514130d5f0a1/post",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"66abcfc8f3e1514130d5f0a1",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"CommentId\", jsonData.Id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"message\": \"Тут могла быть тоже ваша реклама\",\r\n\"owner\": \"66b71e6e4880c89b7fdeaac9\",\r\n\"post\": \"66b71f1c4880c85ba5deaacf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/comment/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Comment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/comment/66a7eafc266943fe29d8e720",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comment",
+						"66a7eafc266943fe29d8e720"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chek Comment after delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user/66a7811e49710d0a9b6b4427/comment",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"66a7811e49710d0a9b6b4427",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user/66a7811e49710d0a9b6b4427",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"66a7811e49710d0a9b6b4427"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChekUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChekUsers After Remove",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/user/66a7811e49710d0a9b6b4427",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"66a7811e49710d0a9b6b4427"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "66486cf013d166b3c6323742",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
